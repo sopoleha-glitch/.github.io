@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДокументМастер PRO — Нейросеть для ваших документов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <h1>📋 ДокументМастер <span class="logo-pro">PRO</span></h1>
+                    <span class="logo-badge">с нейросетью</span>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" id="aboutBtn">О проекте</button>
+                    <button class="btn btn-primary" id="tariffBtn">
+                        Тарифы
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Герой-секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Нейросеть напишет <br>любой документ за минуту
+                    </h1>
+                    <p class="hero-subtitle">
+                        Договоры, заявления, расписки, жалобы — просто опишите ситуацию, 
+                        и ИИ составит юридически грамотный документ
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">15 843</span>
+                            <span class="stat-label">документов создано</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">97%</span>
+                            <span class="stat-label">довольных клиентов</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5 мин</span>
+                            <span class="stat-label">среднее время</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Основной блок генерации -->
+            <section class="generator-section">
+                <div class="generator-header">
+                    <h2>Создать документ</h2>
+                    <p>Опишите, какой документ вам нужен, и нейросеть сделает всё за вас</p>
+                </div>
+
+                <div class="generator-form">
+                    <div class="form-tabs">
+                        <button class="tab-btn active" data-tab="ai">🧠 Нейросеть</button>
+                        <button class="tab-btn" data-tab="templates">📁 Готовые шаблоны</button>
+                        <button class="tab-btn" data-tab="check">🔍 Проверить документ</button>
+                    </div>
+
+                    <!-- Вкладка с нейросетью -->
+                    <div id="aiTab" class="tab-content active">
+                        <div class="form-group">
+                            <label>Опишите, какой документ вам нужен</label>
+                            <textarea 
+                                class="form-textarea" 
+                                id="userRequest" 
+                                rows="5"
+                                placeholder="Например: Нужен договор аренды квартиры. Хозяин - Иванов И.И., квартира на ул. Ленина д.1 кв.5, арендатор - Петров П.П., срок на 11 месяцев, плата 30000 в месяц, залог 10000, коммуналку платит арендатор отдельно..."
+                            ></textarea>
+                            <div class="form-hint">
+                                Чем подробнее опишете ситуацию, тем точнее будет документ
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <div class="option-group">
+                                <label>Тип документа</label>
+                                <select class="form-select" id="docType">
+                                    <option value="auto">Автоматически определить</option>
+                                    <option value="contract">Договор</option>
+                                    <option value="application">Заявление</option>
+                                    <option value="receipt">Расписка</option>
+                                    <option value="claim">Претензия</option>
+                                    <option value="complaint">Жалоба</option>
+                                    <option value="agreement">Соглашение</option>
+                                </select>
+                            </div>
+
+                            <div class="option-group">
+                                <label>Формат</label>
+                                <select class="form-select" id="outputFormat">
+                                    <option value="text">Текст</option>
+                                    <option value="pdf">PDF</option>
+                                    <option value="word">Word</option>
+                                </select>
+                            </div>
+
+                            <div class="option-group">
+                                <label>Стиль</label>
+                                <select class="form-select" id="docStyle">
+                                    <option value="official">Официальный</option>
+                                    <option value="simple">Простой (для людей)</option>
+                                    <option value="detailed">Максимально подробный</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-generate" id="generateBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            Создать документ нейросетью
+                        </button>
+                    </div>
+
+                    <!-- Вкладка с шаблонами -->
+                    <div id="templatesTab" class="tab-content">
+                        <div class="templates-grid">
+                            <div class="template-card" data-template="rent">
+                                <div class="template-icon">🏠</div>
+                                <h3>Договор аренды квартиры</h3>
+                                <p>Для сдачи или съема жилья</p>
+                                <span class="template-badge">Популярное</span>
+                            </div>
+                            <div class="template-card" data-template="car">
+                                <div class="template-icon">🚗</div>
+                                <h3>Договор купли-продажи авто</h3>
+                                <p>Для продажи или покупки машины</p>
+                            </div>
+                            <div class="template-card" data-template="loan">
+                                <div class="template-icon">💰</div>
+                                <h3>Расписка о долге</h3>
+                                <p>Когда даете или берете в долг</p>
+                            </div>
+                            <div class="template-card" data-template="work">
+                                <div class="template-icon">💼</div>
+                                <h3>Трудовой договор</h3>
+                                <p>Для официального трудоустройства</p>
+                            </div>
+                            <div class="template-card" data-template="claim">
+                                <div class="template-icon">⚖️</div>
+                                <h3>Претензия в магазин</h3>
+                                <p>Возврат товара, гарантия</p>
+                            </div>
+                            <div class="template-card" data-template="will">
+                                <div class="template-icon">📜</div>
+                                <h3>Завещание</h3>
+                                <p>Простое завещание</p>
+                            </div>
+                            <div class="template-card" data-template="gift">
+                                <div class="template-icon">🎁</div>
+                                <h3>Договор дарения</h3>
+                                <p>Для подарка недвижимости или вещей</p>
+                            </div>
+                            <div class="template-card" data-template="service">
+                                <div class="template-icon">🔧</div>
+                                <h3>Договор услуг</h3>
+                                <p>С физлицом или ИП</p>
+                            </div>
+                            <div class="template-card" data-template="nda">
+                                <div class="template-icon">🤫</div>
+                                <h3>Соглашение о неразглашении</h3>
+                                <p>NDA для бизнеса</p>
+                            </div>
+                            <div class="template-card" data-template="divorce">
+                                <div class="template-icon">💔</div>
+                                <h3>Соглашение о детях</h3>
+                                <p>При разводе</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Вкладка проверки -->
+                    <div id="checkTab" class="tab-content">
+                        <div class="form-group">
+                            <label>Вставьте текст документа для проверки</label>
+                            <textarea 
+                                class="form-textarea" 
+                                id="docToCheck" 
+                                rows="8"
+                                placeholder="Вставьте сюда документ, и нейросеть проверит его на ошибки и соответствие законам..."
+                            ></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-generate" id="checkBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Проверить документ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Результат генерации -->
+                <div class="result-section" id="resultSection" style="display: none;">
+                    <div class="result-header">
+                        <h3>Готовый документ</h3>
+                        <div class="result-actions">
+                            <button class="btn btn-outline" id="copyBtn">
+                                📋 Копировать
+                            </button>
+                            <button class="btn btn-outline" id="downloadTxtBtn">
+                                📄 Скачать .txt
+                            </button>
+                            <button class="btn btn-primary" id="downloadPdfBtn">
+                                📑 Скачать PDF
+                            </button>
+                        </div>
+                    </div>
+                    <div class="result-content" id="resultContent">
+                        <!-- Сюда будет вставлен сгенерированный документ -->
+                    </div>
+                    
+                    <div class="result-footer">
+                        <p class="result-note">
+                            ⚠️ Документ создан нейросетью. Для важных сделок рекомендуем 
+                            показать документ юристу.
+                        </p>
+                        <button class="btn btn-outline" id="newDocBtn">
+                            Создать новый документ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Индикатор загрузки -->
+                <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Нейросеть создает документ...</p>
+                    <p class="loading-hint">Обычно это занимает 20-30 секунд</p>
+                </div>
+            </section>
+
+            <!-- Категории документов -->
+            <section class="categories-section">
+                <h2>Все категории документов</h2>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <h3>🏠 Недвижимость</h3>
+                        <ul>
+                            <li>Договор аренды</li>
+                            <li>Договор купли-продажи</li>
+                            <li>Договор дарения</li>
+                            <li>Предварительный договор</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h3>🚗 Транспорт</h3>
+                        <ul>
+                            <li>Купля-продажа авто</li>
+                            <li>Доверенность</li>
+                            <li>Договор аренды авто</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h3>💰 Финансы</h3>
+                        <ul>
+                            <li>Расписка о долге</li>
+                            <li>Договор займа</li>
+                            <li>Кредитный договор</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h3>👨‍👩‍👧 Семья</h3>
+                        <ul>
+                            <li>Брачный договор</li>
+                            <li>Соглашение о детях</li>
+                            <li>Завещание</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h3>💼 Бизнес</h3>
+                        <ul>
+                            <li>Договор услуг</li>
+                            <li>Трудовой договор</li>
+                            <li>NDA</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h3>⚖️ Споры</h3>
+                        <ul>
+                            <li>Претензия</li>
+                            <li>Исковое заявление</li>
+                            <li>Жалоба</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Как это работает -->
+            <section class="how-it-works">
+                <h2>Как это работает</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Опишите ситуацию</h3>
+                        <p>Расскажите, какой документ нужен и в какой ситуации</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Нейросеть анализирует</h3>
+                        <p>DeepSeek понимает ваш запрос и подбирает правильную структуру</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Генерация документа</h3>
+                        <p>Создается юридически грамотный документ под вашу ситуацию</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Скачивание</h3>
+                        <p>Скачайте документ в нужном формате</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Отзывы -->
+            <section class="reviews">
+                <h2>Что говорят пользователи</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p>"Сдавал квартиру, боялся составить договор. ДокументМастер сделал идеальный договор за минуту. Арендатор подписал без вопросов!"</p>
+                        <div class="review-author">— Алексей, Москва</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p>"Давал другу 100 000 рублей, нужна была расписка. Нейросеть учла все нюансы: проценты, сроки, штрафы. Спасибо!"</p>
+                        <div class="review-author">— Елена, СПб</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★★★★☆</div>
+                        <p>"Помог составить претензию в магазин. Деньги вернули быстро, потому что документ был составлен грамотно."</p>
+                        <div class="review-author">— Дмитрий, Казань</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>ДокументМастер PRO</h4>
+                    <ul>
+                        <li><a href="#">О проекте</a></li>
+                        <li><a href="#">Как это работает</a></li>
+                        <li><a href="#">Тарифы</a></li>
+                        <li><a href="#">Партнерам</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Документы</h4>
+                    <ul>
+                        <li><a href="#">Популярные</a></li>
+                        <li><a href="#">Недвижимость</a></li>
+                        <li><a href="#">Авто</a></li>
+                        <li><a href="#">Бизнес</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Помощь</h4>
+                    <ul>
+                        <li><a href="#">Вопрос-ответ</a></li>
+                        <li><a href="#">Поддержка</a></li>
+                        <li><a href="#">Пользовательское соглашение</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li>📧 support@docmaster.ru</li>
+                        <li>📞 8 (800) 123-45-67</li>
+                        <li>📱 Telegram: @docmaster_bot</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2026 ДокументМастер PRO. Все документы создаются с помощью нейросети DeepSeek.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для тарифов -->
+    <div class="modal" id="tariffModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeTariffModal">&times;</button>
+            <h2 class="modal-title">Выберите тариф</h2>
+            
+            <div class="tariff-cards">
+                <div class="tariff-card">
+                    <h3>Бесплатный</h3>
+                    <div class="tariff-price">0 ₽</div>
+                    <ul>
+                        <li>✅ 3 документа в день</li>
+                        <li>✅ Готовые шаблоны</li>
+                        <li>✅ Только текст</li>
+                        <li>❌ Нет проверки</li>
+                        <li>❌ Нет PDF</li>
+                    </ul>
+                    <button class="btn btn-outline btn-block" onclick="startFree()">Выбрать</button>
+                </div>
+                
+                <div class="tariff-card popular">
+                    <div class="popular-badge">🔥 Самое популярное</div>
+                    <h3>PRO</h3>
+                    <div class="tariff-price">390 ₽/мес</div>
+                    <ul>
+                        <li>✅ 50 документов в день</li>
+                        <li>✅ Все шаблоны</li>
+                        <li>✅ PDF и Word</li>
+                        <li>✅ Проверка документов</li>
+                        <li>✅ Приоритетная поддержка</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block" onclick="selectPro()">Выбрать</button>
+                </div>
+                
+                <div class="tariff-card">
+                    <h3>Бизнес</h3>
+                    <div class="tariff-price">990 ₽/мес</div>
+                    <ul>
+                        <li>✅ Безлимит документов</li>
+                        <li>✅ API доступ</li>
+                        <li>✅ Интеграция с 1С</li>
+                        <li>✅ Юридическая проверка</li>
+                        <li>✅ Личный менеджер</li>
+                    </ul>
+                    <button class="btn btn-outline btn-block" onclick="selectBusiness()">Выбрать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
